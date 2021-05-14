@@ -1,23 +1,27 @@
 {
   "name": "stocks-chat",
   "version": "1.0.0",
-  "description": "",
+  "description": "Converse com várias pessoas sobre suas ações favoritas",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:Daniel-faculdade/stocks-chat.git"
+  },
   "scripts": {
-    "dev": "DEBUG=express:* nodemon index.js",
-    "start": "ENV_SILENT=true DEBUG=express:* node index.js",
-    "prod": "ENV_SILENT=true node index.js",
+    "dev": "nodemon index.js",
+    "start": "npm install && node index.js",
+    "prod": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["Stocks", "WS", "Socket"],
+  "author": "Daniel Silva",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-handlebars": "^5.3.0",
-    "hel met": "^4.6.0",
+    "helmet": "^4.6.0",
     "pm2": "^4.5.6",
     "socket.io": "^4.0.1"
   },
