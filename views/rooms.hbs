@@ -1,0 +1,20 @@
+<main>
+    <div class="hero-rooms">
+        <img class="hero-bg-image" />
+    </div>
+    <div class="container bg-rooms">
+        <h2>Selecione um ativo para começar a falar: </h2>
+        <ul class="rooms">
+            {{#each room }}
+                <a href="/room/{{ticket}}">
+                    <li>
+                        <div class="content">
+                            <img src="{{ imageUrl }}" alt="{{ticket}}.jpg"/>
+                            <h2>{{ ticket }}</h2>
+                        </div>
+                    </li>
+                </a>
+            {{/each }}
+        </ul>
+    </div>
+</main>

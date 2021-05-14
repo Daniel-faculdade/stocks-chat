@@ -1,0 +1,329 @@
+@import 'reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;700;900&display=swap');
+
+body {
+    background: linear-gradient(#338adc, rgba(255, 255, 255, 0.3));
+}
+
+h1, h2, h3, h4, h5, h6, p, a, b, input, button {
+    font-family: 'Nunito', sans-serif;
+}
+
+.box {
+    display: flow-root;
+    position: relative;
+    padding: 0 25px;
+}
+
+.boxbox {
+    display: block;
+    background: black;
+    height: 375px!important;
+}
+
+.app-title {
+    text-align: center;
+    font-size: 46px;
+    font-weight: bold;
+    color: white;
+    margin: 50px 0 25px 0;
+}
+
+.app-subtitle {
+    color: white;
+    text-align: center;
+    font-size: 24px;
+}
+
+.image-box {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+input.nome {
+    width: 75%;
+    height: auto;
+    outline: none;
+    border: none;
+    border-radius: 50px;
+    display: block;
+    margin: 0 auto;
+    font-size: 13px;
+    padding: 15px 25px;
+}
+
+input.nome:focus {
+    box-shadow: inset rgba(230, 255, 255, 0.3);
+}
+
+.btn-cadastro {
+    width: 60%;
+    margin: 0 auto;
+    cursor: pointer;
+    border:none;
+    border-radius: 20px;
+    height: 50px;
+    align-items: center;
+    text-align: center;
+    background: #2e88db;
+}
+
+.entrar {
+    font-size: 20px;
+    font-weight: bold;
+    color: white;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-rooms {
+    position: relative;
+}
+
+.hero-bg-image {
+    background: url('/images/finance-background.jpg');
+    background-position: center;
+    background-size: 100%;
+    width: 100%;
+    height: 45%;
+    filter: contrast(0.2);
+}
+
+.hero-profile-pic {
+    background-color: darkgray;
+    width: 115px;
+    height: 115px;
+    border-radius: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 75%;
+    top: 30%;
+}
+
+.container.nick {
+    margin: 10px auto;
+}
+
+button.cadastro.entrar {
+    margin-left: 35px;
+    margin-right: 35px;
+}
+
+.container.bg-rooms {
+    background-color: white;
+    height: 100%;
+}
+
+.bg-rooms > h2 {
+    color: #6c6c6c;
+    padding: 25px 0;
+    text-align: center;
+    font-size: 24px;
+}
+
+.rooms {
+    margin-top: 25px;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.rooms a {
+    margin-right: 25px;
+    text-decoration: none;
+}
+
+.rooms a:hover {
+    transition: all ease-in 0.350s;
+    transform: scale(1.050);
+}
+
+.rooms li {
+    width: 150px;
+    height: 125px;
+    margin-top: 20px;
+    background-color: white;
+    box-shadow: 2px 5px 5px rgb(200 200 200 / 50%);
+    text-align: center;
+    padding: 25px;
+    border-radius: 25px;
+}
+
+.rooms li img {
+    width: 150px;
+    height: auto;
+}
+
+.rooms li h2 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #666;
+}
+
+.page-room header {
+    width: 100%;
+    align-items: center;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.page-room header > a {
+    position: absolute;
+    padding: 20px;
+    text-decoration: none;
+}
+
+.page-room header > h2 {
+    color: #8b8b8b;
+    padding: 20px 0;
+}
+
+.page-room section.messages {
+    background-color: #ebebeb;
+    height: 100%;
+    padding: 20px 40px;
+}
+
+.page-room #messages {
+    height: 80%;
+    list-style: none;
+}
+
+.page-room #messages li {
+    display: flex;
+}
+
+.page-room #messages li .profile-pic {
+    width: 60px;
+    height: 60px;
+    background-color: #666;
+    border-radius: 100%;
+}
+
+.page-room #messages li .content {
+    background-color: white;
+    border-radius: 15px;
+    margin-left: 10px;
+    padding: 15px 20px;
+}
+
+#messages li .content b {
+    color: #333;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+#messages li .content p {
+    color: #666;
+    font-size: 14px;
+}
+
+.page-room .group-input-message {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.group-input-message input {
+    width: 94%;
+    padding: 12.5px;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 2px 3px 5px rgb(130 130 130 / 50%);
+    outline: none;
+}
+
+.group-input-message button {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    top: 7.5px;
+    border: none;
+    background: white;
+    border-radius: 100%;
+}
+
+.group-input-message button span {
+    color: #2e88db;
+}
+
+.page_notfound {
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+}
+
+.page_notfound h2 {
+    color: white;
+    padding: 25px;
+}
+
+@media (max-width: 978px) {
+    .group-input-message input {
+        width: 85%;
+        padding: 25px;
+        font-size: 18px;
+    }
+
+    .group-input-message button {
+        width: 75px;
+        height: 75px;
+    }
+}
+
+
+@media (max-width: 767px)
+{
+    input.nome {
+        width: 100%;
+
+    }
+    button.cadastro.entrar {
+        width: 100%;
+        margin: 0 auto;
+    }
+    div#imagens {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .group-input-message input {
+        width: 85%;
+        padding: 15px;
+        font-size: 18px;
+    }
+
+    .group-input-message button {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media (max-width: 525px) {
+
+    .container.bg-rooms {
+        height: fit-content;
+        padding-bottom: 50px;
+    }
+    
+    .header-profile-pic {
+        top: 50%;
+        width: 75px;
+        height: 75px;
+    }
+
+    .group-input-message input {
+        width: 75%;
+        padding: 20px 10px;
+        font-size: 16px;
+    }
+
+    .group-input-message button {
+        width: 75px;
+        height: 75px;
+    }
+}
