@@ -1,2 +1,2 @@
-release: ENV_SILENT=true npm run prod-pm2
+release: ENV_SILENT=true npm run prod
 web: ENV_SILENT=true npm prod
