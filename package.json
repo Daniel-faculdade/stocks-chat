@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Converse com várias pessoas sobre suas ações favoritas",
   "main": "index.js",
+  "engines": {
+    "node": "14.12.x"
+  },
   "repository": {
     "type": "git",
     "url": "git@github.com:Daniel-faculdade/stocks-chat.git"
@@ -10,8 +13,8 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "npm install && node index.js",
-    "prod": "node index.js --silent",
-    "prod-pm2": "pm2 start index.js",
+    "prod": "node index.js",
+    "prod-pm2": "pm2 delete all && pm2 start index.js --name app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["Stocks", "WS", "Socket"],
