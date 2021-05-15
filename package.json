@@ -13,11 +13,15 @@
   "scripts": {
     "dev": "nodemon index.js",
     "start": "npm install && node index.js",
-    "prod": "pm2 delete all && pm2 start index.js --name app",
-    "prod-pm2": "npm install && pm2 delete all && pm2 start index.js --name app",
+    "prod": "pm2 start index.js --name app",
+    "prod-pm2": "npm install && pm2 start index.js --name app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["Stocks", "WS", "Socket"],
+  "keywords": [
+    "Stocks",
+    "WS",
+    "Socket"
+  ],
   "author": "Daniel Silva",
   "license": "ISC",
   "dependencies": {
