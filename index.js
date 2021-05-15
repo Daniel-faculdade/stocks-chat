@@ -1,15 +1,15 @@
+const port = process.env.PORT || 3000;
 const path = require('path');
 
 const express = require('express');
 const exphbs = require('express-handlebars')
 const app = express();
-const server = require('http').createServer(app);
+const server = require('http').createServer(app).listen(port);
 const io = require('socket.io')(server);
 
 const routes = require('./configs/routes')
 const WsController = require('./controllers/WsController')
 
-const port = process.env.PORT || 3000;
 
 app.engine('hbs', exphbs({
     defaultLayout: 'main',
@@ -25,9 +25,5 @@ routes(app)
 
 io.on('connection', (socket) => {
     WsController(socket)
-});
-
-server.listen(port, () => {
-    console.log('Server listening at port %d', port);
 });
 
