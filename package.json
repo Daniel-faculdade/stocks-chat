@@ -13,7 +13,11 @@
     "prod": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": ["Stocks", "WS", "Socket"],
+  "keywords": [
+    "Stocks",
+    "WS",
+    "Socket"
+  ],
   "author": "Daniel Silva",
   "license": "ISC",
   "dependencies": {
