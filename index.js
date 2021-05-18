@@ -24,7 +24,7 @@ app.use('/', express.static(`${__dirname}/public`));
 routes(app)
 
 io.on('connection', (socket) => {
-    WsController(socket)
+    WsController(io, socket)
 });
 
 server.listen(port, () => {

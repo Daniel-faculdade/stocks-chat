@@ -1,25 +1,17 @@
 <main class="page-room">
   <header>
-    <a href="/rooms">VOLTAR PARA MENU</a>
-    <img src="{{room.imageUrl}}" width="200px" height="auto">
-    <h2>{{ room.ticket}}</h2>
+      <a onclick="fn_sairSala('{{room.ticket}}')" href="/rooms">VOLTAR PARA MENU</a>
+      <img src="{{room.imageUrl}}" width="200px" height="auto">
+      <h2>{{ room.ticket}}</h2>
   </header>
   <section class="messages">
-    <ul id="messages">
-      <li class="from">
-        <div class="profile-pic"></div>
-        <div class="content">
-          <b>Lins Soares</b>
-          <p>Ativo muito bem recomendado para quem não gosta muito de oscilações na carteira</p>
-        </div>
-      </li>
-    </ul>
+    <ul id="messages"></ul>
     <div class="group-input-message">
-      <input id="input" placeholder="Digite aqui sua mensagem sobre o ativo..." autocomplete="off" />
-      <button onclick="fn_enviarMensagem()">
-        <span class="material-icons">send</span>
-      </button>
+        <input id="input" placeholder="Digite aqui sua mensagem sobre o ativo..." autocomplete="off" 
+                onkeydown="fn_typingMessage()"/>
+        <button class="button-enviar" onclick="fn_enviarMensagem()">
+          <span class="material-icons">send</span>
+        </button>
     </div>
   </section>
-
 </main>

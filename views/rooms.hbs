@@ -6,7 +6,7 @@
         <h2>Selecione um ativo para começar a falar: </h2>
         <ul class="rooms">
             {{#each room }}
-                <a href="/room/{{ticket}}">
+                <a onclick="fn_entrarSala('{{ticket}}')">
                     <li>
                         <div class="content">
                             <img src="{{ imageUrl }}" alt="{{ticket}}.jpg"/>
