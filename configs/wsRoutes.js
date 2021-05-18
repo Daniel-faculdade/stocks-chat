@@ -1,5 +1,5 @@
 const WsController = require('../controllers/WsController')
 
-module.exports = function(socket) { 
-    WsController(socket)
+module.exports = function(io, socket) { 
+    WsController(io, socket)
 }

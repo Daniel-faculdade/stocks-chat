@@ -232,8 +232,12 @@ button.cadastro.entrar {
     padding: 12.5px;
     border: none;
     border-radius: 15px;
-    box-shadow: 2px 3px 5px rgb(130 130 130 / 50%);
     outline: none;
+}
+
+.group-input-message input:focus {
+    box-shadow: 2px 3px 5px rgb(150 150 150 / 50%);
+    transition: all ease-in 0.3s;
 }
 
 .group-input-message button {
@@ -261,6 +265,27 @@ button.cadastro.entrar {
     padding: 25px;
 }
 
+.message {
+    margin-top: 5px;
+}
+
+.from {
+    flex-direction: row-reverse;
+}
+
+.from .profile-pic {
+    display: none;
+}
+
+.button-enviar {
+    cursor: pointer;
+}
+
+.button-enviar:hover {
+    box-shadow: 0px 4px 5px rgb(150 150 150 / 50%);
+    transition: all ease-in 0.3s;
+}
+
 @media (max-width: 978px) {
     .group-input-message input {
         width: 85%;
@@ -281,6 +306,12 @@ button.cadastro.entrar {
         width: 100%;
 
     }
+
+    input.nome.error {
+        border: red 1px solid;
+        transition: all ease 0.15;
+    }
+
     button.cadastro.entrar {
         width: 100%;
         margin: 0 auto;

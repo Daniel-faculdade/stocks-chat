@@ -10,7 +10,6 @@ module.exports = function(app) {
     })
 
     app.get('/room/:id', (req, res) => {
-        
         const foundedRooms = rooms.filter(room => room.ticket == req.params.id)    
 
         if (foundedRooms.length <= 0)
