@@ -7,7 +7,8 @@
   <section class="messages">
     <ul id="messages"></ul>
     <div class="group-input-message">
-        <input id="input" placeholder="Digite aqui sua mensagem sobre o ativo..." autocomplete="off" 
+        <input id="room" type="hidden" value="{{room.ticket}}" />
+        <input id="inputMessage" placeholder="Digite aqui sua mensagem sobre o ativo..." autocomplete="off" 
                 onkeydown="fn_typingMessage()"/>
         <button class="button-enviar" onclick="fn_enviarMensagem()">
           <span class="material-icons">send</span>
@@ -15,3 +16,6 @@
     </div>
   </section>
 </main>
+<script>
+  fn_entrarSala('{{room.ticket}}')
+</script>

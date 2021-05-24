@@ -185,12 +185,13 @@ button.cadastro.entrar {
 .page-room section.messages {
     background-color: #ebebeb;
     height: 100%;
-    padding: 20px 40px;
 }
 
 .page-room #messages {
-    height: 80%;
+    max-height: 70%;
     list-style: none;
+    padding: 20px;
+    overflow-y: auto;
 }
 
 .page-room #messages li {
@@ -224,7 +225,7 @@ button.cadastro.entrar {
 
 .page-room .group-input-message {
     width: 100%;
-    margin-top: 20px;
+    padding: 12.5px;
 }
 
 .group-input-message input {
