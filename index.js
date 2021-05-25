@@ -5,6 +5,7 @@ const express = require('express');
 const exphbs = require('express-handlebars')
 const app = express();
 const http = require('http')
+require('dotenv').config()
 
 const server = http.createServer(app);
 
@@ -13,7 +14,7 @@ const io = require('socket.io')(server);
 const routes = require('./configs/routes')
 const WsController = require('./controllers/WsController')
 
-const address = getIpAddress()[0]
+const address = process.env.IP || getIpAddress()[0]
 const port = process.env.PORT || 3000;
 
 app.engine('hbs', exphbs({
@@ -33,8 +34,14 @@ io.on('connection', (socket) => {
 });
 
 
+if (process.env.NODE_ENV === "development") {
+    server.listen(port, address, () => {
+        console.log(`Server listening on address: ${address} on port: ${port}`)
+    });
+} else {
+    server.listen(port, () => {
+        console.log(`Server listening on port: ${port}`)
+    });
+}
 
-server.listen(port, address, () => {
-    console.log(`Server listening on address: ${address} on port: ${port}`)
-});
 
