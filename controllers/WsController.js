@@ -22,8 +22,11 @@ module.exports = function(io, socket) {
 
     socket.on('send message', (msg) => {
         const message = JSON.parse(msg)
-
         socket.broadcast.to(`room${message.room}`).emit('received message', message)
-        console.log(message)
+    })
+
+    socket.on('typing', (msg) => {
+        const message  = JSON.parse(msg)
+        socket.broadcast.to(`room${message.room}`).emit('received typing', message)
     })
 }

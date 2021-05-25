@@ -7,7 +7,6 @@ var isConnectionStablish = false;
     socket.on('connection', () => {
         socket.emit('connection')
         isConnectionStablish = true;
-        console.log(socket.id)
         sessionStorage.setItem("@id/wsId", socket.id)
         window.location.replace('/rooms')
     })
@@ -26,6 +25,14 @@ var isConnectionStablish = false;
         addMsgDOM(user, content, 'to');
     })
 
+    socket.on('received typing', (message) => {
+        if (message.typing)  
+            addIsTypingDOM(message.user, message.room)
+        else
+            removeIsTypingDOM(message.user, message.room)
+        
+    })
+
     instanceSocket = socket;
 })()
 
@@ -42,6 +49,27 @@ const addMsgDOM = (user, msg, typeClass) => {
 
     messageList.scrollTop = messageList.scrollHeight - messageList.clientHeight
 };
+
+const addIsTypingDOM = (user, room) => {
+    let messageList = document.getElementById('messages')
+
+    let typingAlert = document.getElementById(`${user}_${room}`)
+
+    if (!typingAlert)
+        messageList.innerHTML += `<p id="${user}_${room}" class="message-typing">
+                                ${user} está digitando...
+                            </p>`;
+
+    setTimeout(() => {
+        removeIsTypingDOM(user, room)
+    }, 3000)   
+};
+
+
+const removeIsTypingDOM = (user, room) => {
+    document.getElementById(`${user}_${room}`).remove();
+};
+
 
 const fn_entrar = function fn_entrar() {
     const inputName = document.getElementById('input-nickname')
@@ -78,8 +106,19 @@ const fn_sairSala = (room) => {
 }
 
 const fn_typingMessage = () => {
-    if (event.keyCode === 13)
+    let user = JSON.parse(sessionStorage.getItem('@ws/userName'))
+    let room = document.getElementById('room').value
+
+    let msgObj = { user: user.name, room };
+
+    if (event.keyCode === 13) {
         fn_enviarMensagem()
+        msgObj.typing = false;
+    } else {
+        msgObj.typing = true;
+    }
+
+    instanceSocket.emit('typing', JSON.stringify(msgObj))
 }
 
 const fn_enviarMensagem = (event) => {

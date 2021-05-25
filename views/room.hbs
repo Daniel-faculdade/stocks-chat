@@ -1,7 +1,7 @@
 <main class="page-room">
   <header>
       <a onclick="fn_sairSala('{{room.ticket}}')" href="/rooms">VOLTAR PARA MENU</a>
-      <img src="{{room.imageUrl}}" width="200px" height="auto">
+      <img src="{{room.imageUrl}}" width="150px" height="auto">
       <h2>{{ room.ticket}}</h2>
   </header>
   <section class="messages">
@@ -9,7 +9,7 @@
     <div class="group-input-message">
         <input id="room" type="hidden" value="{{room.ticket}}" />
         <input id="inputMessage" placeholder="Digite aqui sua mensagem sobre o ativo..." autocomplete="off" 
-                onkeydown="fn_typingMessage()"/>
+                onkeydown="fn_typingMessage()"  onfocusin="fn_setStatusDigitando()" onfocusout="fn_setStatusDigitando()"/>
         <button class="button-enviar" onclick="fn_enviarMensagem()">
           <span class="material-icons">send</span>
         </button>
