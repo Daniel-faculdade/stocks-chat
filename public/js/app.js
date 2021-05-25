@@ -7,29 +7,30 @@ var isConnectionStablish = false;
     socket.on('connection', () => {
         socket.emit('connection')
         isConnectionStablish = true;
-
-        console.log(socket.rooms)
-    })
-
-    socket.on('user logged', (id) => {
-        sessionStorage.setItem('@id/wsconn', id)
+        sessionStorage.setItem("@id/wsId", socket.id)
         window.location.replace('/rooms')
     })
 
     socket.on('joined room', (room) => {
-        window.location.replace(`/room/${room}`)
-    })
-
-    socket.on('leaved room', (room) => {
-        window.location.replace('/rooms')
+        console.log(`User joined room: ${room}`)
     })
 
     socket.on('received message', (msg) => {
-        console.log('Mensagem Recebida:' + msg)
+        const {userId, user, content} = msg;
+        const userSessionId = sessionStorage.getItem('@id/wsId')
 
-        let msgObj = JSON.parse(msg);
+        if (userId != userSessionId)
+            return;
 
-        addMsgDOM(msgObj.user, msgObj.message, 'to');
+        addMsgDOM(user, content, 'to');
+    })
+
+    socket.on('received typing', (message) => {
+        if (message.typing)  
+            addIsTypingDOM(message.user, message.room)
+        else
+            removeIsTypingDOM(message.user, message.room)
+        
     })
 
     instanceSocket = socket;
@@ -45,11 +46,30 @@ const addMsgDOM = (user, msg, typeClass) => {
             <p>${msg}</p>
         </div>
     </li>`;
+
+    messageList.scrollTop = messageList.scrollHeight - messageList.clientHeight
 };
 
-const getUserFromCookie = () => {
-    return document.cookie.replace("userInfo=", "");
-}
+const addIsTypingDOM = (user, room) => {
+    let messageList = document.getElementById('messages')
+
+    let typingAlert = document.getElementById(`${user}_${room}`)
+
+    if (!typingAlert)
+        messageList.innerHTML += `<p id="${user}_${room}" class="message-typing">
+                                ${user} está digitando...
+                            </p>`;
+
+    setTimeout(() => {
+        removeIsTypingDOM(user, room)
+    }, 3000)   
+};
+
+
+const removeIsTypingDOM = (user, room) => {
+    document.getElementById(`${user}_${room}`).remove();
+};
+
 
 const fn_entrar = function fn_entrar() {
     const inputName = document.getElementById('input-nickname')
@@ -64,12 +84,11 @@ const fn_entrar = function fn_entrar() {
     }
 
     instanceSocket.emit('new user', user)
-    document.cookie = `userInfo=${user.name}`;
+    sessionStorage.setItem(`@ws/userName`, JSON.stringify(user));
+    window.location.replace('/rooms')
 }
 
-const fn_entrarSala = (room) => {
-    event.preventDefault()
-    
+function fn_entrarSala(room) {
     if (!room)
         return;
 
@@ -81,25 +100,43 @@ const fn_sairSala = (room) => {
 
     if (!room)
         return;
+
     instanceSocket.emit('leave room', room)
+    window.location.replace(`/rooms`)
 }
 
 const fn_typingMessage = () => {
-    if (event.keyCode === 13)
+    let user = JSON.parse(sessionStorage.getItem('@ws/userName'))
+    let room = document.getElementById('room').value
+
+    let msgObj = { user: user.name, room };
+
+    if (event.keyCode === 13) {
         fn_enviarMensagem()
+        msgObj.typing = false;
+    } else {
+        msgObj.typing = true;
+    }
+
+    instanceSocket.emit('typing', JSON.stringify(msgObj))
 }
 
 const fn_enviarMensagem = (event) => {
-    let inputMessage = document.getElementById('input')
-    let user = getUserFromCookie();
+    let inputMessage = document.getElementById('inputMessage')
+    let user = JSON.parse(sessionStorage.getItem('@ws/userName'))
+    let room = document.getElementById('room').value
 
+    if(!user) {
+        window.location.replace(`/`)
+        return;
+    }
     if (!inputMessage.value)
         return;
         
 
-    let msgObj = { message: inputMessage.value, user };
+    let msgObj = { content: inputMessage.value, user: user.name, room };
         
     instanceSocket.emit('send message', JSON.stringify(msgObj))
-    addMsgDOM(user, inputMessage.value, 'from');
+    addMsgDOM(user.name, inputMessage.value, 'from');
     inputMessage.value = ''
 }

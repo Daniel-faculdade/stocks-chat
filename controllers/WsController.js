@@ -8,17 +8,25 @@ module.exports = function(io, socket) {
     });
 
     socket.on('join room', (room) => {
-        socket.join(`room-${room}`)
-        socket.emit('joined room', room)
+        socket.join(`room${room}`)
+        room.userId = socket.id
+        socket.broadcast.to("room" + room).emit('joined room', room)
+        console.log('Joined room: ' + socket.id)
     })
 
     socket.on('leave room', (room) => {
-        socket.leave(`room-${room}`)
+        socket.leave(`room${room}`)
         socket.emit('leaved room', room)
+        console.log('Leave room: ' + room)
     })
 
     socket.on('send message', (msg) => {
-        socket.broadcast.emit('received message', msg)
-        console.log(msg)
+        const message = JSON.parse(msg)
+        socket.broadcast.to(`room${message.room}`).emit('received message', message)
+    })
+
+    socket.on('typing', (msg) => {
+        const message  = JSON.parse(msg)
+        socket.broadcast.to(`room${message.room}`).emit('received typing', message)
     })
 }
